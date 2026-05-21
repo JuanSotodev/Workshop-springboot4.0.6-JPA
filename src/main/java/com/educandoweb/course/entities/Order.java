@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.educandoweb.course.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -28,6 +29,8 @@ public class Order implements Serializable{
 	//GARANTIR QUE O INSTANTE SERA MOSTRADO NO JSON EM FORMATO DE STRING DO 8601
 	private Instant moment;
 	
+	private Integer orderStatus;
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")	
 	//MAPEAMENTO MUITOS PARA UM
@@ -36,10 +39,11 @@ public class Order implements Serializable{
 	public Order() {
 	}
 
-	public Order(Long id, Instant moment, User client) {
+	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
+		setOrderStatus(orderStatus);
 		this.client = client;
 	}
 
@@ -58,6 +62,18 @@ public class Order implements Serializable{
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
+
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+	//USANDO O METEDO valueOf DO ENUM PARA PASSAR O OrderStatus QUE AQUI NESSA CLASSE E DO TIPO INTEGER
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		if(orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
+		}	
+	}
+	//USANDO O METODO getCode DO ENUM PARA RECEBER UM ORDER STATUS E GUARDAR INTERNAMENTE AQUI NESSA CLASSE COMO UM NUMERO INTEIRO
 
 	public User getClient() {
 		return client;
