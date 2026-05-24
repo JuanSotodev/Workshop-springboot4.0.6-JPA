@@ -87,6 +87,7 @@ public class TesteConfig implements CommandLineRunner{
 		o1.setPayment(pay1);
 		
 		orderRepository.save(o1);
+		//PARA SALVAR UM PAGAMENTO, SETAMOS ELE NO PEDIDO E AI SALVAMOS O PEDIDO NOVAMENTE COM O PAGAMENTO NELE
 	}
 	
 }
