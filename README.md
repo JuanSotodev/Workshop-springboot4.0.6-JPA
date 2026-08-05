@@ -4,7 +4,7 @@ API REST para gerenciamento de uma biblioteca.
 
 ## 🚀 Tecnologias
 
-- Java 21
+- Java 25
 - Spring Boot
 - Spring Data JPA
 - Hibernate
